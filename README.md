@@ -17,14 +17,27 @@ Your awesome AI sidekick that scans YouTube videos and delivers marketing insigh
 ```bash
 uv sync
 ```
-3. Create a `.env` file with your keys:
-```
-OPENAI_API_KEY=your_openai_key
-YOUTUBE_API_KEY=your_youtube_key
-LANGCHAIN_API_KEY=your_langsmith_key (optional)
-LANGCHAIN_PROJECT=marketing-ai-copilot (optional)
-LANGCHAIN_TRACING_V2=true (optional)
-```
+
+## 🔑 API Keys You'll Need
+
+This app requires three API keys - two essential, one optional:
+
+1. **OpenAI API Key** - Powers the brains of the operation
+2. **YouTube API Key** - Finds those juicy marketing videos
+3. **LangSmith API Key** (optional) - For the data nerds who want to monitor everything
+
+All keys are entered directly in the app's sidebar - no `.env` file needed!
+
+## 🎬 Getting a YouTube API Key
+
+1. Visit the [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project (or select an existing one)
+3. Navigate to "APIs & Services" > "Library"
+4. Search for "YouTube Data API v3" and enable it
+5. Go to "APIs & Services" > "Credentials"
+6. Click "Create Credentials" > "API Key"
+7. Copy your shiny new API key
+8. Paste it into the app when prompted
 
 ## 🏃‍♀️ Fire It Up!
 
@@ -32,9 +45,8 @@ LANGCHAIN_TRACING_V2=true (optional)
 ```bash
 streamlit run app.py
 ```
-2. Enter your OpenAI API key in the sidebar
-3. Optionally, add your LangSmith API key for enhanced features
-4. Start asking marketing questions!
+2. Enter your API keys in the sidebar
+3. Start asking marketing questions!
 
 ## 🔬 LangSmith Integration
 
