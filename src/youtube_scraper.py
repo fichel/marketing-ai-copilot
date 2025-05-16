@@ -149,7 +149,7 @@ class YoutubeScraper:
         for video_id in tqdm(self.video_ids, desc="Loading videos"):
             try:
                 video = self._load_video_data(video_id, add_video_info=add_video_info)
-                time.sleep(1)
+                time.sleep(2)
                 if video is not None:  # Only add videos with valid transcripts
                     videos.append(video)
             except Exception as e:
