@@ -90,3 +90,4 @@ Make it your own:
 - Modify the default topic in `app.py` (TOPIC variable)
 - Adjust retrieval parameters in `youtube_rag.py`
 - Customize the RAG prompts in `youtube_rag.py`
+- Remove or adjust the `time.sleep(2)` in `src/youtube_scraper.py` when running locally - this rate limiting is added for Streamlit Cloud deployments to prevent API throttling
