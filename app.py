@@ -1,8 +1,8 @@
 import streamlit as st
 import os
 from pathlib import Path
-from youtube_scraper import YoutubeScraper
-from youtube_rag import YoutubeRAG
+from src.youtube_scraper import YoutubeScraper
+from src.youtube_rag import YoutubeRAG
 from langchain_core.runnables import RunnableWithMessageHistory
 from langchain_community.chat_message_histories.streamlit import (
     StreamlitChatMessageHistory,
