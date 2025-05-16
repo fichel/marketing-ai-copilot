@@ -2,6 +2,8 @@
 
 Your awesome AI sidekick that scans YouTube videos and delivers marketing insights! Ask it anything about marketing and watch it work its magic.
 
+🔗 **Try it live:** [marketing-ai-copilot.streamlit.app](https://marketing-ai-copilot.streamlit.app/)
+
 ![Marketing AI Copilot App](images/app.png)
 
 ## ✨ What This Tool Can Do
