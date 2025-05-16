@@ -4,6 +4,7 @@
 # finally, the scraper will save the dataframe to a csv file
 
 import os
+import time
 from dataclasses import dataclass, field
 from pathlib import Path
 import pandas as pd
@@ -11,7 +12,6 @@ from tqdm import tqdm
 from dotenv import load_dotenv
 from googleapiclient.discovery import build
 from youtube_transcript_api._api import YouTubeTranscriptApi
-from googleapiclient.discovery import build
 
 
 class YTLoader:
@@ -149,6 +149,7 @@ class YoutubeScraper:
         for video_id in tqdm(self.video_ids, desc="Loading videos"):
             try:
                 video = self._load_video_data(video_id, add_video_info=add_video_info)
+                time.sleep(1)
                 if video is not None:  # Only add videos with valid transcripts
                     videos.append(video)
             except Exception as e:
