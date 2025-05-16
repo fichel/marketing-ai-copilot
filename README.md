@@ -2,6 +2,8 @@
 
 Your awesome AI sidekick that scans YouTube videos and delivers marketing insights! Ask it anything about marketing and watch it work its magic.
 
+![Marketing AI Copilot App](images/app.png)
+
 ## ✨ What This Tool Can Do
 
 - 🔍 Find the best marketing content on YouTube
@@ -51,6 +53,8 @@ streamlit run app.py
 ## 🔬 LangSmith Integration
 
 This app comes with LangSmith integration for advanced monitoring and debugging:
+
+![LangSmith Integration](images/langsmith.png)
 
 ### 🎁 Cool Features
 - 📊 Visualize the RAG pipeline in real-time
