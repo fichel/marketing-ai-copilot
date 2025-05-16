@@ -1,7 +1,6 @@
 import streamlit as st
 import os
 from pathlib import Path
-from dotenv import load_dotenv, find_dotenv
 from youtube_scraper import YoutubeScraper
 from youtube_rag import YoutubeRAG
 from langchain_core.runnables import RunnableWithMessageHistory
@@ -13,9 +12,11 @@ import uuid
 
 st.title("📣🤖 Your Marketing AI Copilot")
 
-# Initialize session state for OpenAI API key
+# Initialize session state for API keys
 if "openai_api_key" not in st.session_state:
     st.session_state.openai_api_key = ""
+if "youtube_api_key" not in st.session_state:
+    st.session_state.youtube_api_key = ""
 if "api_key_configured" not in st.session_state:
     st.session_state.api_key_configured = False
 if "langsmith_configured" not in st.session_state:
@@ -26,8 +27,12 @@ if "run_id" not in st.session_state:
 # API key input section
 with st.sidebar:
     st.header("Configuration")
-    api_key = st.text_input(
+    openai_api_key = st.text_input(
         "Enter your OpenAI API key:", type="password", key="api_key_input"
+    )
+
+    youtube_api_key = st.text_input(
+        "Enter your YouTube API key:", type="password", key="youtube_api_key_input"
     )
 
     # LangSmith API key input
@@ -44,13 +49,20 @@ with st.sidebar:
     )
 
     if st.button("Set API Keys"):
-        if api_key:
-            os.environ["OPENAI_API_KEY"] = api_key
-            st.session_state.openai_api_key = api_key
+        if openai_api_key:
+            os.environ["OPENAI_API_KEY"] = openai_api_key
+            st.session_state.openai_api_key = openai_api_key
             st.session_state.api_key_configured = True
             st.success("OpenAI API key set successfully!")
         else:
             st.error("Please enter a valid OpenAI API key.")
+
+        if youtube_api_key:
+            os.environ["YOUTUBE_API_KEY"] = youtube_api_key
+            st.session_state.youtube_api_key = youtube_api_key
+            st.success("YouTube API key set successfully!")
+        else:
+            st.warning("YouTube API key not provided. Some features may be limited.")
 
         if langsmith_api_key:
             os.environ["LANGCHAIN_API_KEY"] = langsmith_api_key
@@ -65,8 +77,8 @@ if not st.session_state.api_key_configured:
     st.stop()
 
 # Check if YouTube API key is present
-if not os.getenv("YOUTUBE_API_KEY"):
-    st.sidebar.warning("YOUTUBE_API_KEY not found. Some features may be limited.")
+if not st.session_state.youtube_api_key:
+    st.sidebar.warning("YouTube API key not found. Some features may be limited.")
 
 # Show LangSmith status
 if st.session_state.langsmith_configured:
@@ -215,7 +227,10 @@ if question := st.chat_input("Enter your Marketing question here:"):
 
                     # If LangSmith is configured, show a link to the run
                     if st.session_state.langsmith_configured:
-                        langsmith_url = f"https://smith.langchain.com/p/{os.getenv('LANGCHAIN_PROJECT', 'marketing-ai-copilot')}/r/{run_id}"
+                        langsmith_project = (
+                            langsmith_project_name  # Use the input value, not env var
+                        )
+                        langsmith_url = f"https://smith.langchain.com/p/{langsmith_project}/r/{run_id}"
                         st.markdown(f"[View this trace in LangSmith]({langsmith_url})")
 
                 message_placeholder.markdown(response["response"])
