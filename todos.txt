@@ -1,0 +1,11 @@
+1. Simplify the YoutubeScraper class, initialing automatically with the topic
+2. Fix the o1-mini model supprt
+3. Add a clear history button
+4. Add a unique session id to the app
+5. Add an OPENAI_API_KEY input to the app
+6. Deploy to Streamlit Cloud
+
+Future Enhancements:
+1. Make a generic app that takes a topic and chats with the Youtube Knowledge Base
+2. Try different RAG patterns, like Hybrid RAG (filter metadata in parallel)
+3. Use Ollama for open source models option
